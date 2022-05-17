@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:ignore="NamespaceTypo">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/icon"
+        android:layout_marginBottom="50dp"
+        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+        <Button
+            android:id="@+id/BtnPersonal"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:text="Registrarse"
+            android:background="@drawable/border_button"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="280dp"
+            android:justificationMode="inter_word"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Este tipo de usuarios sirve para el uso normal de la aplicación, pero con ciertas restricciones de permisos para registrar productos en tienda."
+            android:layout_marginBottom="50dp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/BtnEmpresarial"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:text="Registrarse"
+            android:background="@drawable/border_button"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="280dp"
+            android:justificationMode="inter_word"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="Este tipo de usuario es ideal para empresas o personas que quieren registrar sus productos para poner en venta dentro de nuestra tienda."
+            android:layout_marginBottom="50dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
