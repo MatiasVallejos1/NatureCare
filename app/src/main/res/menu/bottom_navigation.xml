@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/primerContenedor"
+        android:icon="@drawable/ic_person"
+        android:title="Foro"/>
+    <item
+        android:id="@+id/segundoContenedor"
+        android:icon="@drawable/ic_store"
+        android:title="Tienda"/>
+</menu>
