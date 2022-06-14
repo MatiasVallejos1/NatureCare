@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         splashProgress1=findViewById(R.id.splashProgress);
-        ObjectAnimator.ofInt(splashProgress1,"progress",100).setDuration(5000).start();
+        ObjectAnimator.ofInt(splashProgress1,"progress",100).setDuration(4000).start();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },5000);
+        },4000);
 
 
 

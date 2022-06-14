@@ -41,6 +41,12 @@
             android:backgroundTint="@color/white"
             android:padding="15dp"
             android:layout_margin="10dp"/>
+        <TextView
+            android:id="@+id/registrarse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/verde"
+            android:text="Registrarse"/>
         <Button
             android:id="@+id/iniciarSesion"
             android:layout_width="match_parent"

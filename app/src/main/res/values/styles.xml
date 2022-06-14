@@ -1,0 +1,5 @@
+<resources>
+    <style name="Widget.Theme.NatureCare.MyView" parent="">
+        <item name="android:background">@color/secundario</item>
+    </style>
+</resources>

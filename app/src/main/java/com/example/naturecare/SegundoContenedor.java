@@ -1,10 +1,15 @@
 package com.example.naturecare;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -48,12 +53,46 @@ public class SegundoContenedor extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.tool_bar_tienda, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+/*
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //return super.onOptionsItemSelected(item);
+        switch(item.getItemId()){
+
+            case R.id.carroCompras:
+                Intent carro = new Intent(getContext(), Carro_compra.class);
+                startActivity(carro);
+                return true;
+
+            case R.id.productoGuardado:
+                Intent productoG = new Intent(getContext(),Producto_guardado.class);
+                startActivity(productoG);
+                return true;
+            case R.id.agregarProducto:
+                Intent agregar = new Intent(getContext(),agregar_carro.class);
+                startActivity(agregar);
+                return true;
+
+            case R.id.TcerrarSesion:
+                Intent cerrar = new Intent(getContext(),MainActivity2.class);
+                startActivity(cerrar);
+                return true;
+        }
+        return true;
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

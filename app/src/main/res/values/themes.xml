@@ -15,8 +15,14 @@
     </style>
     
     <style name="bottomNavigation">
-        <item name="android:background">@color/primario</item>
-        <item name="itemIconTint">@color/secundario</item>
-        <item name="itemTextColor">@color/terciario</item>
+        <item name="android:background">@color/secundario</item>
+        <item name="itemIconTint">@color/terciario</item>
+        <item name="itemTextColor">@color/cuarto</item>
+    </style>
+
+    <style name="toolBar">
+        <item name="android:background">@color/secundario</item>
+        <item name="itemIconTint">@color/terciario</item>
+        <item name="itemTextColor">@color/cuarto</item>
     </style>
 </resources>

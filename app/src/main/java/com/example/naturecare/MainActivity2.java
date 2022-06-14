@@ -10,25 +10,34 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    Button boton;
+    Button button;
+    TextView registrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-        boton = (Button)findViewById(R.id.iniciarSesion);
-
-        boton.setOnClickListener(new View.OnClickListener() {
+        registrar = (TextView)findViewById(R.id.registrarse);
+        registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent boton = new Intent(MainActivity2.this, Foro.class);
-                startActivity(boton);
+                Intent registrar = new Intent(MainActivity2.this, Eleccion_registro.class);
+                startActivity(registrar);
+            }
+        });
+
+        button = (Button)findViewById(R.id.iniciarSesion);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent button = new Intent(MainActivity2.this, Foro.class);
+                startActivity(button);
             }
         });
     }

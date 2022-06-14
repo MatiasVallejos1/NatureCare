@@ -6,12 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     tools:ignore="NamespaceTypo">
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="160dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/icon"
-        android:layout_marginBottom="50dp"
-        tools:ignore="MissingConstraints" />
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/toolbar"/>
+
+    <include
+        android:id="@+id/tool_bar_tienda"
+        layout="@layout/toolbar_tienda"/>
+
+
     <FrameLayout
         android:id="@+id/contenedor"
         android:layout_width="match_parent"
@@ -30,6 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:background="@color/secundario"
         app:menu="@menu/bottom_navigation"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"

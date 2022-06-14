@@ -40,6 +40,19 @@
             android:padding="15dp"
             android:layout_margin="10dp"/>
         <EditText
+            android:id="@+id/RPphone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="numero telefonico"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="5dp"
+            android:background="@drawable/border_text"
+            android:backgroundTint="@color/white"
+            android:padding="15dp"
+            android:layout_margin="10dp"/>
+        <EditText
             android:id="@+id/RPusuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,7 +79,7 @@
             android:padding="15dp"
             android:layout_margin="10dp"/>
         <Button
-            android:id="@+id/button"
+            android:id="@+id/RPregistrar"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="Registrarse"

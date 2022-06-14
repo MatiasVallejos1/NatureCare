@@ -2,30 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.naturecare">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NatureCare">
         <activity
-            android:name=".Producto_guardado"
-            android:exported="false" />
-        <activity
-            android:name=".Carro_compras"
-            android:exported="false" />
-        <activity
-            android:name=".Producto_seleccionado"
-            android:exported="false" />
-        <activity
             android:name=".Registrar_producto"
+            android:exported="false" />
+        <activity
+            android:name=".Registro_empresarial"
             android:exported="false" />
         <activity
             android:name=".Publicacion_seleccionada"
             android:exported="false" />
         <activity
             android:name=".Registro_publicacion"
+            android:exported="false" />
+        <activity
+            android:name=".Registro_usuario"
             android:exported="false" />
         <activity
             android:name=".Publicaciones_guardadas"

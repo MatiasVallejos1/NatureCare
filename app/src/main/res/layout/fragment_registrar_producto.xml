@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    tools:ignore="NamespaceTypo">
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="160dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/icon"
-        android:layout_marginBottom="50dp"
-        tools:ignore="MissingConstraints" />
+    tools:context=".RegistrarProducto">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,63 +16,59 @@
             android:textSize="22dp"
             android:textStyle="bold"
             android:layout_height="wrap_content"
-            android:text="Registro usuario empresarial"
+            android:text="Registro de producto"
             android:layout_marginBottom="50dp"
             android:textColor="@color/teal_700"/>
         <EditText
-            android:id="@+id/REemail"
+            android:id="@+id/RPemail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Ingrese Email"
-            android:drawableStart="@drawable/ic_email"
+            android:hint="Ingrese nombre"
             android:drawablePadding="5dp"
             android:background="@drawable/border_text"
             android:backgroundTint="@color/white"
             android:padding="15dp"
             android:layout_margin="10dp"/>
         <EditText
-            android:id="@+id/REusuario"
+            android:id="@+id/RPusuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Nombre de usuario"
-            android:drawableStart="@drawable/ic_person"
+            android:inputType="number"
+            android:hint="cantidad"
             android:drawablePadding="5dp"
             android:background="@drawable/border_text"
             android:backgroundTint="@color/white"
             android:padding="15dp"
             android:layout_margin="10dp"/>
         <EditText
-            android:id="@+id/REphone"
+            android:id="@+id/RPpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Número telefónico"
-            android:drawableStart="@drawable/ic_phone"
-            android:drawablePadding="5dp"
-            android:background="@drawable/border_text"
-            android:backgroundTint="@color/white"
-            android:padding="15dp"
-            android:layout_margin="10dp"/>
-        <EditText
-            android:id="@+id/REpassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword"
+            android:inputType="textLongMessage"
             android:hint="Contraseña"
-            android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="5dp"
             android:background="@drawable/border_text"
             android:backgroundTint="@color/white"
             android:padding="15dp"
             android:layout_margin="10dp"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <Button
-            android:id="@+id/REregistrar"
+            android:id="@+id/SubirImagen"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="Examinar"
+            android:background="@drawable/border_button"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:padding="10dp"/>
+        <Button
+            android:id="@+id/button"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="Registrarse"
@@ -89,4 +78,4 @@
             android:padding="20dp"/>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

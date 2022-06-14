@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/carroCompras"
+        android:title="Carro de compras"
+        android:icon="@drawable/ic_cart_shopp"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/productoGuardado"
+        android:title="Productos Guardados"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/agregarProducto"
+        android:title="Agregar Producto"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/TcerrarSesion"
+        android:title="Cerrar sesion"
+        app:showAsAction="never" />
+</menu>

@@ -3,17 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SegundoContenedor">
+    tools:context=".agregar_carro">
 
-
+    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:fontFamily="sans-serif-black"
-        android:textColor="@color/verde"
-        android:textSize="40sp"
-        android:text="Tienda"/>
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>
