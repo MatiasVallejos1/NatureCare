@@ -13,86 +13,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SegundoContenedor#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class SegundoContenedor extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public SegundoContenedor() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SegundoContenedor.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SegundoContenedor newInstance(String param1, String param2) {
-        SegundoContenedor fragment = new SegundoContenedor();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
-
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.tool_bar_tienda, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-/*
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //return super.onOptionsItemSelected(item);
-        switch(item.getItemId()){
-
-            case R.id.carroCompras:
-                Intent carro = new Intent(getContext(), Carro_compra.class);
-                startActivity(carro);
-                return true;
-
-            case R.id.productoGuardado:
-                Intent productoG = new Intent(getContext(),Producto_guardado.class);
-                startActivity(productoG);
-                return true;
-            case R.id.agregarProducto:
-                Intent agregar = new Intent(getContext(),agregar_carro.class);
-                startActivity(agregar);
-                return true;
-
-            case R.id.TcerrarSesion:
-                Intent cerrar = new Intent(getContext(),MainActivity2.class);
-                startActivity(cerrar);
-                return true;
-        }
-        return true;
-    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

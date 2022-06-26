@@ -18,12 +18,19 @@
             android:textSize="24dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"/>
+        <ImageView
+            android:id="@+id/productoImage"
+            android:layout_width="250dp"
+            android:layout_height="240dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp">
+        </ImageView>
         <TextView
-            android:id="@+id/txtPublicacion"
+            android:id="@+id/txtProducto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="fill"
-            android:hint="Publicación"
+            android:hint="Producto 1"
             android:textSize="18dp"
             android:layout_marginBottom="20dp"/>
         <LinearLayout
@@ -41,7 +48,7 @@
                 android:id="@+id/comentar"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_comment">
+                android:src="@drawable/ic_share">
             </ImageView>
             <ImageView
                 android:id="@+id/guardar"
@@ -67,7 +74,7 @@
                 android:layout_width="100dp"
                 android:gravity="center"
                 android:layout_height="wrap_content"
-                android:hint="20">
+                android:hint="">
             </TextView>
             <TextView
                 android:id="@+id/txtGuardar"

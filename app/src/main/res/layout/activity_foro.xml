@@ -7,22 +7,33 @@
     tools:context=".MainActivity"
     tools:ignore="NamespaceTypo">
 
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/toolbar"/>
-
-    <include
-        android:id="@+id/tool_bar_tienda"
-        layout="@layout/toolbar_tienda"/>
-
-
-    <FrameLayout
-        android:id="@+id/contenedor"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/toolbar"/>
+
+        <include
+            android:id="@+id/tool_bar_tienda"
+            layout="@layout/toolbar_tienda"/>
+
+        <FrameLayout
+            android:id="@+id/contenedor"
+            android:layout_width="match_parent"
+            android:layout_height="533dp"
+            android:layout_alignParentTop="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ScrollView>
+        </FrameLayout>
+
+    </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navegation"
         android:layout_width="match_parent"
@@ -40,7 +51,6 @@
         android:layout_alignParentRight="true"
         app:labelVisibilityMode="selected"
         style="@style/bottomNavigation"/>
-
 
 
 

@@ -10,9 +10,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.naturecare.entidades.Usuario;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Foro extends AppCompatActivity {
 
@@ -23,7 +34,10 @@ public class Foro extends AppCompatActivity {
     ProductoGuardado productoGuardado = new ProductoGuardado();
     RegistrarProducto registrarProducto = new RegistrarProducto();
 
+    String name, pass;
     int menuOpcion = 1;
+
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +48,37 @@ public class Foro extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationSelectedListener);
 
         loadFragment(primerContenedor);
-        setToolbarForo(menuOpcion);
 
+        if(menuOpcion == 1){
+            setToolbarForo(menuOpcion);
+        }if(menuOpcion ==2){
+            setToolbarTienda(menuOpcion);
+        }
+
+        requestQueue = Volley.newRequestQueue(this);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            name = extras.getString("Nombre");
+            pass = extras.getString("Pass");
+        }
+
+        readPublicacion();
     }
 
 
     public void setToolbarForo(int menu){
-        Toolbar toolbar;
-        if(menu == 1){
-            toolbar = findViewById(R.id.tool_bar);
-            setSupportActionBar(toolbar);
-            getSupportActionBar().show();
+        Toolbar toolbarForo;
+        toolbarForo = findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbarForo);
+        getSupportActionBar().show();
+    }
 
-        }else if(menu == 2){
-            toolbar = findViewById(R.id.tool_bar_tienda);
-            setSupportActionBar(toolbar);
-            getSupportActionBar().show();
-        }
+    public void setToolbarTienda(int menu){
+        Toolbar toolbarTienda;
+        toolbarTienda = findViewById(R.id.tool_bar_tienda);
+        setSupportActionBar(toolbarTienda);
+        getSupportActionBar().show();
     }
 
     @Override
@@ -121,5 +149,43 @@ public class Foro extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.contenedor, fragment);
         transaction.commit();
+    }
+
+    private void readPublicacion(){
+        String URL = "http://192.168.1.9/naturecare/login.php?Nombre="+name+"&Pass="+pass;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        String nombre, email, pass, phone;
+                        int idUser, tipo;
+                        try {
+                            idUser = response.getInt("idUsuarioPersonal");
+                            nombre = response.getString("Nombre");
+                            phone = response.getString("Phone");
+                            email = response.getString("Email");
+                            pass = response.getString("Pass");
+                            tipo = response.getInt("tipo_usuario_id_tipo_usuario");
+
+                            Usuario user = new Usuario(idUser, nombre, phone, email, pass, tipo);
+                            System.out.println(user.getId()+", "+user.getNombre()+", "+user.getEmail());
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+
+        requestQueue.add(jsonObjectRequest);
     }
 }

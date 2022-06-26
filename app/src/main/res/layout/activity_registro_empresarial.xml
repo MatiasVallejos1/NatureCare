@@ -6,87 +6,98 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     tools:ignore="NamespaceTypo">
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="160dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/icon"
-        android:layout_marginBottom="50dp"
-        tools:ignore="MissingConstraints" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-        <TextView
-            android:layout_width="280dp"
-            android:gravity="center"
-            android:textSize="22dp"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Registro usuario empresarial"
-            android:layout_marginBottom="50dp"
-            android:textColor="@color/teal_700"/>
-        <EditText
-            android:id="@+id/REemail"
+        android:orientation="vertical">
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Ingrese Email"
-            android:drawableStart="@drawable/ic_email"
-            android:drawablePadding="5dp"
-            android:background="@drawable/border_text"
-            android:backgroundTint="@color/white"
-            android:padding="15dp"
-            android:layout_margin="10dp"/>
-        <EditText
-            android:id="@+id/REusuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Nombre de usuario"
-            android:drawableStart="@drawable/ic_person"
-            android:drawablePadding="5dp"
-            android:background="@drawable/border_text"
-            android:backgroundTint="@color/white"
-            android:padding="15dp"
-            android:layout_margin="10dp"/>
-        <EditText
-            android:id="@+id/REphone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Número telefónico"
-            android:drawableStart="@drawable/ic_phone"
-            android:drawablePadding="5dp"
-            android:background="@drawable/border_text"
-            android:backgroundTint="@color/white"
-            android:padding="15dp"
-            android:layout_margin="10dp"/>
-        <EditText
-            android:id="@+id/REpassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:hint="Contraseña"
-            android:drawableStart="@drawable/ic_lock"
-            android:drawablePadding="5dp"
-            android:background="@drawable/border_text"
-            android:backgroundTint="@color/white"
-            android:padding="15dp"
-            android:layout_margin="10dp"/>
-        <Button
-            android:id="@+id/REregistrar"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:text="Registrarse"
-            android:background="@drawable/border_button"
-            android:textColor="@color/white"
-            android:layout_margin="10dp"
-            android:padding="20dp"/>
+            android:scrollbars="none">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="160dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="left"
+                    app:srcCompat="@drawable/icon"
+                    android:layout_marginBottom="50dp"
+                    tools:ignore="MissingConstraints" />
+                <TextView
+                    android:layout_width="280dp"
+                    android:gravity="center"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:text="Registro usuario empresarial"
+                    android:layout_marginBottom="50dp"
+                    android:textColor="@color/teal_700"/>
+                <EditText
+                    android:id="@+id/REemail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:hint="Ingrese Email"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="5dp"
+                    android:background="@drawable/border_text"
+                    android:backgroundTint="@color/white"
+                    android:padding="15dp"
+                    android:layout_margin="10dp"/>
+                <EditText
+                    android:id="@+id/REusuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:hint="Nombre de usuario"
+                    android:drawableStart="@drawable/ic_person"
+                    android:drawablePadding="5dp"
+                    android:background="@drawable/border_text"
+                    android:backgroundTint="@color/white"
+                    android:padding="15dp"
+                    android:layout_margin="10dp"/>
+                <EditText
+                    android:id="@+id/REphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:hint="Número telefónico"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:drawablePadding="5dp"
+                    android:background="@drawable/border_text"
+                    android:backgroundTint="@color/white"
+                    android:padding="15dp"
+                    android:layout_margin="10dp"/>
+                <EditText
+                    android:id="@+id/REpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPassword"
+                    android:hint="Contraseña"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:drawablePadding="5dp"
+                    android:background="@drawable/border_text"
+                    android:backgroundTint="@color/white"
+                    android:padding="15dp"
+                    android:layout_margin="10dp"/>
+                <Button
+                    android:id="@+id/REregistrar"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:text="Registrarse"
+                    android:background="@drawable/border_button"
+                    android:textColor="@color/white"
+                    android:layout_margin="10dp"
+                    android:padding="20dp"/>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

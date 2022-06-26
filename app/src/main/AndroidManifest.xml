@@ -12,22 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NatureCare">
         <activity
-            android:name=".Registrar_producto"
-            android:exported="false" />
-        <activity
             android:name=".Registro_empresarial"
             android:exported="false" />
         <activity
-            android:name=".Publicacion_seleccionada"
-            android:exported="false" />
-        <activity
-            android:name=".Registro_publicacion"
-            android:exported="false" />
-        <activity
             android:name=".Registro_usuario"
-            android:exported="false" />
-        <activity
-            android:name=".Publicaciones_guardadas"
             android:exported="false" />
         <activity
             android:name=".Tienda"

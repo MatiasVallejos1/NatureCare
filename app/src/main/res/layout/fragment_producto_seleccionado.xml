@@ -3,26 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ProductoSeleccionado">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-        <TextView
-            android:layout_width="280dp"
-            android:gravity="center"
-            android:textSize="22dp"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="Registro usuario personal"
-            android:layout_marginBottom="50dp"
-            android:textColor="@color/teal_700"/>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="500dp"/>
+        android:scrollbars="none">
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="280dp"
+                android:gravity="center"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:text="Producto seleccionado"
+                android:layout_marginBottom="50dp"
+                android:textColor="@color/teal_700"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/mostrar_producto">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>

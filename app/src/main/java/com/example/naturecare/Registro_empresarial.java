@@ -28,7 +28,7 @@ public class Registro_empresarial extends AppCompatActivity {
 
     RequestQueue requestQueue;
 
-    private static final String URL = "http://192.168.1.6/naturecare/save.php";
+    private static final String URL = "http://192.168.1.9/naturecare/save.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class Registro_empresarial extends AppCompatActivity {
             String phone = etPhone.getText().toString().trim();
             String email = etEmail.getText().toString().trim();
             String password = etPass.getText().toString().trim();
-            String tipo = "2";
+            int tipo = 2;
 
             CreateUser(nombre, phone, email, password, tipo);
 
@@ -69,7 +69,7 @@ public class Registro_empresarial extends AppCompatActivity {
         }
     }
 
-    private void CreateUser(final String nombre, final  String phone, final  String email, final String password, final String tipo){
+    private void CreateUser(final String nombre, final  String phone, final  String email, final String password, final int tipo){
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
@@ -101,7 +101,7 @@ public class Registro_empresarial extends AppCompatActivity {
                 params.put("Phone", phone);
                 params.put("Email", email);
                 params.put("Pass", password);
-                params.put("tipo_usuario_id_tipo_usuario", tipo);
+                params.put("tipo_usuario_id_tipo_usuario", String.valueOf(tipo));
                 return params;
             }
         };

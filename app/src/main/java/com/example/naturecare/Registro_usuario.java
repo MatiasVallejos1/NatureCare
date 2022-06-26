@@ -28,7 +28,7 @@ public class Registro_usuario extends AppCompatActivity {
 
     RequestQueue requestQueue;
 
-    private static final String URL = "http://192.168.1.6/naturecare/save.php";
+    private static final String URL = "http://192.168.1.9/naturecare/save.php";
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -47,24 +47,24 @@ public class Registro_usuario extends AppCompatActivity {
         etUser = findViewById(R.id.RPusuario);
         etPass = findViewById(R.id.RPpassword);
         //Button
-        button = findViewById(R.id.RPregistrar);
+        button = findViewById(R.id.registrar);
     }
 
     public void onClick(View v){
         int id = v.getId();
 
-        if(id == R.id.RPregistrar){
+        if(id == R.id.registrar){
             String email = etEmail.getText().toString().trim();
             String phone = etPhone.getText().toString().trim();
             String usuario = etUser.getText().toString().trim();
             String password = etPass.getText().toString().trim();
-            String tipo = "1";
+            int tipo = 1;
 
             CreateUser(usuario, phone, email, password, tipo);
         }
     }
 
-    private void CreateUser(final String usuario, final String phone, final String email, final String password, final String tipo){
+    private void CreateUser(final String usuario, final String phone, final String email, final String password, final int tipo){
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
@@ -96,7 +96,7 @@ public class Registro_usuario extends AppCompatActivity {
                 params.put("Phone", phone);
                 params.put("Email", email);
                 params.put("Pass", password);
-                params.put("tipo_usuario_id_tipo_usuario", tipo);
+                params.put("tipo_usuario_id_tipo_usuario", String.valueOf(tipo));
                 return params;
             }
         };
