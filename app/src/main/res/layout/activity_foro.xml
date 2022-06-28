@@ -7,11 +7,6 @@
     tools:context=".MainActivity"
     tools:ignore="NamespaceTypo">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
         <include
             android:id="@+id/tool_bar"
             layout="@layout/toolbar"/>
@@ -20,20 +15,23 @@
             android:id="@+id/tool_bar_tienda"
             layout="@layout/toolbar_tienda"/>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="69dp"
+        android:paddingBottom="58dp"
+        android:orientation="vertical">
+
         <FrameLayout
             android:id="@+id/contenedor"
             android:layout_width="match_parent"
-            android:layout_height="533dp"
-            android:layout_alignParentTop="true"
+            android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-            </ScrollView>
         </FrameLayout>
-
     </LinearLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navegation"
         android:layout_width="match_parent"

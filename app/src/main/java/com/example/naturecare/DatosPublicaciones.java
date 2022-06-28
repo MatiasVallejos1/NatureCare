@@ -1,53 +1,45 @@
 package com.example.naturecare;
 
+
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.Nullable;
 
 import com.example.naturecare.entidades.Publicacion;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class DatosPublicaciones extends RecyclerView.Adapter<DatosPublicaciones.ViewPublicacion>{
+public class DatosPublicaciones extends ArrayAdapter<Publicacion> {
 
-    ArrayList<Publicacion> lista;
+    Context context;
+    List<Publicacion> ArrayPublicacion;
 
-    public DatosPublicaciones(ArrayList<Publicacion> lista){
-        this.lista = lista;
+    public DatosPublicaciones(@NonNull Context context, List<Publicacion>ArraPublicacion) {
+        super(context, R.layout.lista_publicacion, ArraPublicacion);
+        this.context = context;
+        this.ArrayPublicacion = ArraPublicacion;
     }
 
     @NonNull
     @Override
-    public ViewPublicacion onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_publicacion,null,false);
-        return new ViewPublicacion(view);
-    }
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_publicacion,null,true);
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewPublicacion holder, int position) {
-        holder.nombre.setText(lista.get(position).getIdPublicacion());
-        holder.publicacion.setText(lista.get(position).getDetalle());
-        holder.like.setText(lista.get(position).getLike());
-        holder.comentar.setText(lista.get(position).getComentarios());
-    }
+        TextView txtNombre=view.findViewById(R.id.txtPUNombre);
+        TextView txtDetalle=view.findViewById(R.id.txtPUPublicacion);
+        TextView txtLike=view.findViewById(R.id.txtPULike);
+        TextView txtComentario=view.findViewById(R.id.txtPUComentar);
 
-    @Override
-    public int getItemCount() {
-        return lista.size();
-    }
-
-    public class ViewPublicacion extends RecyclerView.ViewHolder{
-        TextView nombre, publicacion, like, comentar, guardar;
-        public ViewPublicacion(@NonNull View itemView) {
-            super(itemView);
-            nombre = (TextView) itemView.findViewById(R.id.txtNombre);
-            publicacion = (TextView) itemView.findViewById(R.id.txtPublicacion);
-            like = (TextView) itemView.findViewById(R.id.txtLike);
-            comentar = (TextView) itemView.findViewById(R.id.txtComentar);
-        }
+        txtNombre.setText(ArrayPublicacion.get(position).getNombre());
+        txtDetalle.setText(ArrayPublicacion.get(position).getDetalle());
+        txtLike.setText(ArrayPublicacion.get(position).getLike());
+        txtComentario.setText(ArrayPublicacion.get(position).getComentarios());
+        return view;
     }
 }

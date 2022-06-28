@@ -1,48 +1,42 @@
 package com.example.naturecare;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.naturecare.entidades.Publicacion;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.zip.Inflater;
 
 
 public class PrimerContenedor extends Fragment {
 
-    TextView tvNombre, tvPublicacion, tvLike, tvComentar;
-    ArrayList<Publicacion> lista;
-    RecyclerView publicacion;
-    RequestQueue requestQueue;
-    public static final String URL = "http://192.168.1.9/naturecare/readPublicacion.php";
+    Button registrar;
+    ListView listView;
+    DatosPublicaciones datosPublicaciones;
+    public static ArrayList<Publicacion>publicacionArrayList=new ArrayList<>();
+    Publicacion publicacion;
+    static String URL = "https://naturecare-app.000webhostapp.com/crud/readPublicacion.php";
 
     public PrimerContenedor() {
         // Required empty public constructor
@@ -52,73 +46,60 @@ public class PrimerContenedor extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        tvNombre = (TextView) getActivity().findViewById(R.id.txtNombre);
-        tvPublicacion = (TextView) getActivity().findViewById(R.id.txtPublicacion);
-        tvLike = (TextView) getActivity().findViewById(R.id.txtLike);
-        tvComentar = (TextView) getActivity().findViewById(R.id.txtComentar);
 
-        /*publicacion = (RecyclerView) getActivity().findViewById(R.id.ListaPublicacion);
-        publicacion.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
-
-        lista = new ArrayList<Publicacion>();
-
-        DatosPublicaciones datosPublicaciones = new DatosPublicaciones(lista);
-        publicacion.setAdapter(datosPublicaciones);*/
-
-        requestQueue = Volley.newRequestQueue(getContext());
-        readPublicacion();
-    }
-
-    private void readPublicacion(){
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                URL,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        String detalle, hora, idUsuario;
-                        int like, comentario;
-                        try {
-                            detalle = response.getString("Detalle");
-                            like = response.getInt("Cantidad_like");
-                            comentario = response.getInt("Cantidad_comentarios");
-                            hora = response.getString("Hora_publicacion");
-                            idUsuario = response.getString("Usuario_Personal_idUsuarioPersonal");
-
-                            tvPublicacion.setText(detalle);
-                            tvLike.setText(like);
-                            tvComentar.setText(comentario);
-                            tvNombre.setText(idUsuario);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }
-        );
-
-        requestQueue.add(jsonObjectRequest);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_primer_contenedor, container, false);
 
-        return root;
+        View view= inflater.inflate(R.layout.fragment_primer_contenedor, container, false);
+        // Inflate the layout for this fragment
+
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
+
+        listView = view.findViewById(R.id.listPublicacion);
+        datosPublicaciones = new DatosPublicaciones(requireContext(),publicacionArrayList);
+        listView.setAdapter(datosPublicaciones);
+        //listarPublicaciones();
+    }
+
+    private void listarPublicaciones(){
+        StringRequest request = new StringRequest(Request.Method.POST, URL, response -> {
+            publicacionArrayList.clear();
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                String exito = jsonObject.getString("exito");
+                JSONArray jsonArray = jsonObject.getJSONArray("datos");
+
+                if(exito.equals("1")){
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        int idPublicacion = object.getInt("idpublicacion");
+                        String nombre = object.getString("Nombre");
+                        String detalle = object.getString("Detalle");
+                        int like = object.getInt("Cantidad_like");
+                        int comentario = object.getInt("Cantidad_comentarios");
+                        Date hora = Date.valueOf(object.getString("Hora_publicacion"));
+
+                        publicacion = new Publicacion(idPublicacion,nombre,detalle,like,comentario,hora);
+                        publicacionArrayList.add(publicacion);
+                        datosPublicaciones.notifyDataSetChanged();
+                    }
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_SHORT).show());
+        RequestQueue requestQueue= Volley.newRequestQueue(requireContext());
+        requestQueue.add(request);
     }
 }

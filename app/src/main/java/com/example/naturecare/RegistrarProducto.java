@@ -1,17 +1,18 @@
 package com.example.naturecare;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -20,10 +21,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.naturecare.entidades.Usuario;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class RegistrarProducto extends Fragment {
@@ -33,80 +34,117 @@ public class RegistrarProducto extends Fragment {
 
     RequestQueue requestQueue;
 
-    Usuario usuario = new Usuario();
 
-    private static final String URL = "http://192.168.1.9/naturecare/nuevoProducto.php";
+    private final String URL = "https://naturecare-app.000webhostapp.com/crud/nuevoProducto.php";
 
     public RegistrarProducto() {
-        // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestQueue = Volley.newRequestQueue(getContext());
-        inicializar();
-
-        registrar.setOnClickListener(this::onClick);
     }
 
-    private void inicializar(){
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        requestQueue = Volley.newRequestQueue(requireActivity());
         //EditText
-        etNombre = getActivity().findViewById(R.id.RPnombre);
-        etCantidad = getActivity().findViewById(R.id.RPcantidad);
-        etDetalle = getActivity().findViewById(R.id.RPdetalle);
-        etFicha = getActivity().findViewById(R.id.RPficha);
-        etEstado = getActivity().findViewById(R.id.RPestado);
-        etMonto = getActivity().findViewById(R.id.RPmonto);
+        etNombre= requireActivity().findViewById(R.id.RPnombre);
+        etCantidad= requireActivity().findViewById(R.id.RPcantidad);
+        etDetalle= requireActivity().findViewById(R.id.RPdetalle);
+        etFicha= requireActivity().findViewById(R.id.RPficha);
+        etEstado= requireActivity().findViewById(R.id.RPestado);
+        etMonto= requireActivity().findViewById(R.id.RPmonto);
 
         //Button
-        registrar = getActivity().findViewById(R.id.RPregistrar);
-    }
-    public void onClick(View v){
-        int id = v.getId();
+        registrar = requireActivity().findViewById(R.id.RPregistrar);
 
-        if(id == R.id.registrar){
-            String nombre = etNombre.getText().toString().trim();
-            int cantidad = Integer.parseInt(etCantidad.getText().toString());
-            String detalle = etDetalle.getText().toString().trim();
-            String ficha = etFicha.getText().toString().trim();
-            String estado = etEstado.getText().toString().trim();
-            Double monto = Double.parseDouble(etMonto.getText().toString());
-            int idUser;
-            idUser = usuario.getId();
+        registrar.setOnClickListener(v -> {
+            int id = v.getId();
+
+            if(id == R.id.RPregistrar){
+                String nombre = etNombre.getText().toString().trim();
+                int cantidad = Integer.parseInt(etCantidad.getText().toString());
+                String detalle = etDetalle.getText().toString().trim();
+                String ficha = etFicha.getText().toString().trim();
+                String estado = etEstado.getText().toString().trim();
+                Double monto = Double.parseDouble(etMonto.getText().toString());
+                //int idUser = usuario.obtenerUsuario(0);
+                int idUser = 1;
 
 
-            CreateProducto(nombre, cantidad, detalle, ficha, estado, monto, idUser);
+                CreateProducto(nombre, cantidad, detalle, ficha, estado, monto, idUser);
         }
+    });
     }
 
-    private void CreateProducto(final String nombre, final int cantidad, final String detalle, final String ficha, final String estado, final Double monto, final int idUser){
+    public void CreateProducto(final String nombre, final int cantidad, final String detalle, final String ficha, final String estado, final Double monto, final int idUser){
 
+        ProgressDialog progressDialog=new ProgressDialog(requireActivity());
+        if(nombre.isEmpty()){
+            etNombre.setError("Complete los campos");
+        }else if(cantidad==0){
+            etCantidad.setError("Complete los campos");
+        }else if(detalle.isEmpty()){
+            etDetalle.setError("Complete los campos");
+        }else if(ficha.isEmpty()){
+            etFicha.setError("Complete los campos");
+        }else if(estado.isEmpty()){
+            etEstado.setError("Complete los campos");
+        }else if(monto==null){
+            etMonto.setError("Complete los campos");
+        }else{
+            progressDialog.show();
+            StringRequest request=new StringRequest(Request.Method.POST, URL, response -> {
+                if (response.equalsIgnoreCase("datos insertados")) {
+                    Toast.makeText(requireActivity(), "datos ingresados", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                } else {
+                    Toast.makeText(requireActivity(), response, Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+
+            }, error -> {
+                Toast.makeText(requireActivity(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }){
+                @Override
+                protected Map<String, String> getParams(){
+
+                    Map<String, String>params=new HashMap<>();
+                    params.put("Nombre", nombre);
+                    params.put("Cantidad", String.valueOf(cantidad));
+                    params.put("Detalle", detalle);
+                    params.put("Ficha_tecnica", ficha);
+                    params.put("Estado_producto", estado);
+                    params.put("Monto", String.valueOf(monto));
+                    return params;
+                }
+            };
+            requestQueue.add(request);
+        }
+/*
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(getContext(),"Usuario registrado",Toast.LENGTH_SHORT).show();
-                        etNombre.setText("");
-                        etCantidad.setText("");
-                        etDetalle.setText("");
-                        etFicha.setText("");
-                        etEstado.setText("");
-                        etMonto.setText("");
-                    }
+                response -> {
+                    Toast.makeText(getContext(),"Producto registrado",Toast.LENGTH_SHORT).show();
+                    etNombre.setText("");
+                    etCantidad.setText("");
+                    etDetalle.setText("");
+                    etFicha.setText("");
+                    etEstado.setText("");
+                    etMonto.setText("");
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                error -> {
 
-                    }
                 }
         ){
-            @Nullable
+            @NonNull
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("Nombre", nombre);
                 params.put("Cantidad", String.valueOf(cantidad));
@@ -114,11 +152,10 @@ public class RegistrarProducto extends Fragment {
                 params.put("Ficha_tecnica", ficha);
                 params.put("Estado_producto", estado);
                 params.put("Monto", String.valueOf(monto));
-                params.put("usuario_idUsuarioPersonal",String.valueOf(idUser));
                 return params;
             }
         };
-        requestQueue.add(stringRequest);
+        requestQueue.add(stringRequest);*/
     }
 
     @Override

@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txtNombre"
+            android:id="@+id/txtPUNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="fill"
@@ -19,7 +19,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"/>
         <TextView
-            android:id="@+id/txtPublicacion"
+            android:id="@+id/txtPUPublicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="fill"
@@ -32,19 +32,19 @@
             android:orientation="horizontal"
             android:gravity="center_horizontal">
             <ImageView
-                android:id="@+id/favorito"
+                android:id="@+id/PUfavorito"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_favorite_border">
             </ImageView>
             <ImageView
-                android:id="@+id/comentar"
+                android:id="@+id/PUcomentar"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_comment">
             </ImageView>
             <ImageView
-                android:id="@+id/guardar"
+                android:id="@+id/PUguardar"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_save_border">
@@ -56,21 +56,21 @@
             android:orientation="horizontal"
             android:gravity="center_horizontal">
             <TextView
-                android:id="@+id/txtLike"
+                android:id="@+id/txtPULike"
                 android:layout_width="100dp"
                 android:gravity="center"
                 android:layout_height="wrap_content"
                 android:hint="100">
             </TextView>
             <TextView
-                android:id="@+id/txtComentar"
+                android:id="@+id/txtPUComentar"
                 android:layout_width="100dp"
                 android:gravity="center"
                 android:layout_height="wrap_content"
                 android:hint="20">
             </TextView>
             <TextView
-                android:id="@+id/txtGuardar"
+                android:id="@+id/txtPUGuardar"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content">
             </TextView>

@@ -28,7 +28,7 @@ public class Registro_empresarial extends AppCompatActivity {
 
     RequestQueue requestQueue;
 
-    private static final String URL = "http://192.168.1.9/naturecare/save.php";
+    private static final String URL = "https://naturecare-app.000webhostapp.com/crud/save.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,23 +1,23 @@
 package com.example.naturecare.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Usuario {
 
-    private  int id;
-    private String nombre;
-    private String email;
-    private String pass;
-    private String phone;
-    private int tipo;
+    int id,tipo;
+    String nombre,email,pass,phone;
 
-    public Usuario(int id, String nombre, String email, String pass, String phone, int tipo) {
+    public Usuario() {
+    }
+
+    public Usuario(int id, int tipo, String nombre, String email, String pass, String phone) {
         this.id = id;
+        this.tipo = tipo;
         this.nombre = nombre;
         this.email = email;
         this.pass = pass;
         this.phone = phone;
-        this.tipo = tipo;
-    }
-    public Usuario() {
     }
 
     public int getId() {
@@ -26,6 +26,14 @@ public class Usuario {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 
     public String getNombre() {
@@ -58,13 +66,5 @@ public class Usuario {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
     }
 }

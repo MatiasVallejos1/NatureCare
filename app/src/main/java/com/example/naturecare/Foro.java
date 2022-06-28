@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -18,12 +20,18 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.naturecare.entidades.Publicacion;
 import com.example.naturecare.entidades.Usuario;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.sql.Date;
+import java.util.ArrayList;
 
 public class Foro extends AppCompatActivity {
 
@@ -33,11 +41,19 @@ public class Foro extends AppCompatActivity {
     Carro_compra carro_compra = new Carro_compra();
     ProductoGuardado productoGuardado = new ProductoGuardado();
     RegistrarProducto registrarProducto = new RegistrarProducto();
+    RegistrarPublicacion registrarPublicacion = new RegistrarPublicacion();
+
 
     String name, pass;
     int menuOpcion = 1;
 
+    ListView listView;
+    DatosPublicaciones datosPublicaciones;
+    public static ArrayList<Publicacion>publicacionArrayList=new ArrayList<>();
+    Publicacion publicacion;
+
     RequestQueue requestQueue;
+    ArrayList<Usuario> listaUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +62,15 @@ public class Foro extends AppCompatActivity {
 
         BottomNavigationView navigation = findViewById(R.id.bottom_navegation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationSelectedListener);
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            name = extras.getString("Nombre");
+            pass = extras.getString("Pass");
+        }
 
         loadFragment(primerContenedor);
 
@@ -55,15 +80,6 @@ public class Foro extends AppCompatActivity {
             setToolbarTienda(menuOpcion);
         }
 
-        requestQueue = Volley.newRequestQueue(this);
-
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            name = extras.getString("Nombre");
-            pass = extras.getString("Pass");
-        }
-
-        readPublicacion();
     }
 
 
@@ -72,6 +88,7 @@ public class Foro extends AppCompatActivity {
         toolbarForo = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbarForo);
         getSupportActionBar().show();
+
     }
 
     public void setToolbarTienda(int menu){
@@ -97,6 +114,10 @@ public class Foro extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(menuOpcion == 1){
             switch(item.getItemId()){
+
+                case R.id.agregarPublicacion:
+                    loadFragment(registrarPublicacion);
+                    break;
 
                 case R.id.publicacionGuardada:
                     loadFragment(publicacionGuardada);
@@ -149,43 +170,5 @@ public class Foro extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.contenedor, fragment);
         transaction.commit();
-    }
-
-    private void readPublicacion(){
-        String URL = "http://192.168.1.9/naturecare/login.php?Nombre="+name+"&Pass="+pass;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                URL,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        String nombre, email, pass, phone;
-                        int idUser, tipo;
-                        try {
-                            idUser = response.getInt("idUsuarioPersonal");
-                            nombre = response.getString("Nombre");
-                            phone = response.getString("Phone");
-                            email = response.getString("Email");
-                            pass = response.getString("Pass");
-                            tipo = response.getInt("tipo_usuario_id_tipo_usuario");
-
-                            Usuario user = new Usuario(idUser, nombre, phone, email, pass, tipo);
-                            System.out.println(user.getId()+", "+user.getNombre()+", "+user.getEmail());
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }
-        );
-
-        requestQueue.add(jsonObjectRequest);
     }
 }

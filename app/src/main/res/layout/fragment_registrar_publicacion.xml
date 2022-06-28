@@ -21,7 +21,7 @@
             android:textColor="@color/teal_700"
             android:layout_marginTop="15dp"/>
         <TextView
-            android:id="@+id/Rpublicacion"
+            android:id="@+id/RPUpublicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -33,7 +33,7 @@
             android:paddingBottom="160dp"
             android:layout_margin="15dp"/>
         <Button
-            android:id="@+id/button"
+            android:id="@+id/RPUregistrar"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:text="Registrarse"

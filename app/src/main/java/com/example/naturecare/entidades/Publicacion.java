@@ -4,12 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class Publicacion implements Serializable {
-    int idPublicacion;
-    String nombre;
-    String detalle;
-    int like;
-    int comentarios;
+public class Publicacion {
+    int idPublicacion,like,comentarios;
+    String nombre,detalle;
     Date hora;
 
     public Publicacion(int idPublicacion, String nombre, String detalle, int like, int comentarios, Date hora) {
@@ -32,22 +29,6 @@ public class Publicacion implements Serializable {
         this.idPublicacion = idPublicacion;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDetalle() {
-        return detalle;
-    }
-
-    public void setDetalle(String detalle) {
-        this.detalle = detalle;
-    }
-
     public int getLike() {
         return like;
     }
@@ -62,6 +43,22 @@ public class Publicacion implements Serializable {
 
     public void setComentarios(int comentarios) {
         this.comentarios = comentarios;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
 
     public Date getHora() {
