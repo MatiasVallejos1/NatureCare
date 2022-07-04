@@ -4,8 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,9 +17,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.naturecare.entidades.Publicacion;
@@ -26,17 +35,20 @@ import org.json.JSONObject;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.zip.Inflater;
 
 
 public class PrimerContenedor extends Fragment {
 
-    Button registrar;
-    ListView listView;
-    DatosPublicaciones datosPublicaciones;
-    public static ArrayList<Publicacion>publicacionArrayList=new ArrayList<>();
+    TextView txtNombre, txtPublicacion, txtLike, txtComentar;
+
+    RecyclerView listaPublicacion;
+    RequestQueue requestQueue;
+    List<Publicacion> lista;
     Publicacion publicacion;
-    static String URL = "https://naturecare-app.000webhostapp.com/crud/readPublicacion.php";
+    private static final String URL = "http://192.168.1.6/naturecare/readPublicacion.php";
 
     public PrimerContenedor() {
         // Required empty public constructor
@@ -56,6 +68,7 @@ public class PrimerContenedor extends Fragment {
         View view= inflater.inflate(R.layout.fragment_primer_contenedor, container, false);
         // Inflate the layout for this fragment
 
+
         return view;
     }
 
@@ -64,42 +77,68 @@ public class PrimerContenedor extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        listView = view.findViewById(R.id.listPublicacion);
+        requestQueue = Volley.newRequestQueue(requireContext());
+
+        txtNombre = (TextView) view.findViewById(R.id.txtPUNombre);
+        txtPublicacion = (TextView) view.findViewById(R.id.txtPublicacion);
+        txtLike = (TextView) view.findViewById(R.id.txtPULike);
+        txtComentar = (TextView) view.findViewById(R.id.txtPUComentar);
+
+        lista = new ArrayList<>();
+
+        listaPublicacion = (RecyclerView) view.findViewById(R.id.listPublicacion);
+        listaPublicacion.setHasFixedSize(true);
+        listaPublicacion.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
+        listarPublicaciones();
+        /*
         datosPublicaciones = new DatosPublicaciones(requireContext(),publicacionArrayList);
         listView.setAdapter(datosPublicaciones);
-        //listarPublicaciones();
+        listarPublicaciones();*/
     }
 
-    private void listarPublicaciones(){
-        StringRequest request = new StringRequest(Request.Method.POST, URL, response -> {
-            publicacionArrayList.clear();
-            try {
-                JSONObject jsonObject = new JSONObject(response);
-                String exito = jsonObject.getString("exito");
-                JSONArray jsonArray = jsonObject.getJSONArray("datos");
+    public void listarPublicaciones() {
+        StringRequest request = new StringRequest(Request.Method.POST,
+                URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
 
-                if(exito.equals("1")){
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject object = jsonArray.getJSONObject(i);
-                        int idPublicacion = object.getInt("idpublicacion");
-                        String nombre = object.getString("Nombre");
-                        String detalle = object.getString("Detalle");
-                        int like = object.getInt("Cantidad_like");
-                        int comentario = object.getInt("Cantidad_comentarios");
-                        Date hora = Date.valueOf(object.getString("Hora_publicacion"));
+                            for (int i = 0; i < jsonArray.length(); i++) {
 
-                        publicacion = new Publicacion(idPublicacion,nombre,detalle,like,comentario,hora);
-                        publicacionArrayList.add(publicacion);
-                        datosPublicaciones.notifyDataSetChanged();
+                                JSONObject publicacionOb = jsonArray.getJSONObject(i);
+
+                                lista.add(new Publicacion(
+                                        publicacionOb.getInt("id"),
+                                        publicacionOb.getString("nombre"),
+                                        publicacionOb.getString("detalle"),
+                                        publicacionOb.getInt("like"),
+                                        publicacionOb.getInt("comentario")
+                                ));
+
+
+                            }
+
+                            DatosPublicaciones datos = new DatosPublicaciones(getActivity(),lista);
+                            listaPublicacion.setAdapter(datos);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
 
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_SHORT).show());
-        RequestQueue requestQueue= Volley.newRequestQueue(requireContext());
-        requestQueue.add(request);
+                    }
+                });
+        Volley.newRequestQueue(getActivity()).add(request);
+/*
+    }, error -> Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_SHORT).show());
+        Volley.newRequestQueue(requireContext()).add(request);
+        //requestQueue.add(request);*/
     }
 }

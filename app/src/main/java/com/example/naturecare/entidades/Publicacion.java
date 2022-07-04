@@ -7,15 +7,14 @@ import java.text.SimpleDateFormat;
 public class Publicacion {
     int idPublicacion,like,comentarios;
     String nombre,detalle;
-    Date hora;
+    String hora;
 
-    public Publicacion(int idPublicacion, String nombre, String detalle, int like, int comentarios, Date hora) {
+    public Publicacion(int idPublicacion, String nombre, String detalle, int like, int comentarios) {
         this.idPublicacion = idPublicacion;
         this.nombre = nombre;
         this.detalle = detalle;
         this.like = like;
         this.comentarios = comentarios;
-        this.hora = hora;
     }
 
     public Publicacion() {
@@ -61,11 +60,11 @@ public class Publicacion {
         this.detalle = detalle;
     }
 
-    public Date getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(Date hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 

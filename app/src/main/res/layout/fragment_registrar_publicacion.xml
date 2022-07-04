@@ -20,18 +20,15 @@
             android:layout_marginBottom="50dp"
             android:textColor="@color/teal_700"
             android:layout_marginTop="15dp"/>
-        <TextView
+        <EditText
             android:id="@+id/RPUpublicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textLongMessage"
-            android:hint=" Digite Publicación"
-            android:drawablePadding="5dp"
-            android:background="@drawable/border_text"
-            android:backgroundTint="@color/white"
-            android:paddingBottom="160dp"
-            android:layout_margin="15dp"/>
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:maxLines="10"
+            android:minLines="6"
+            android:scrollbars="vertical"/>
         <Button
             android:id="@+id/RPUregistrar"
             android:layout_width="220dp"
