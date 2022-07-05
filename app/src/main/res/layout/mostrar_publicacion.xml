@@ -14,80 +14,15 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtNombre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="fill"
-                android:hint="Usuario"
-                android:textSize="24dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"/>
-            <TextView
-                android:id="@+id/txtPublicacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="fill"
-                android:hint="Publicación"
-                android:textSize="18dp"
-                android:layout_marginBottom="20dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
-                <ImageView
-                    android:id="@+id/favorito"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_favorite_border">
-                </ImageView>
-                <ImageView
-                    android:id="@+id/comentar"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_comment">
-                </ImageView>
-                <ImageView
-                    android:id="@+id/guardar"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_save_border">
-                </ImageView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
-                <TextView
-                    android:id="@+id/txtLike"
-                    android:layout_width="100dp"
-                    android:gravity="center"
-                    android:layout_height="wrap_content"
-                    android:hint="100">
-                </TextView>
-                <TextView
-                    android:id="@+id/txtComentar"
-                    android:layout_width="100dp"
-                    android:gravity="center"
-                    android:layout_height="wrap_content"
-                    android:hint="20">
-                </TextView>
-                <TextView
-                    android:id="@+id/txtGuardar"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content">
-                </TextView>
-            </LinearLayout>
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:fontFamily="sans-serif-black"
+                android:text="Comentarios"
                 android:textColor="@color/terciario"
-                android:textSize="28dp"
-                android:text="Comentarios"/>
+                android:textSize="28dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -97,67 +32,70 @@
                     android:id="@+id/txtCnombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="fill"
                     android:hint="Usuario"
-                    android:textSize="24dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"/>
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/txtCpublicacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
                     android:gravity="fill"
                     android:hint="Publicación"
-                    android:textSize="18dp"
-                    android:layout_marginBottom="20dp"/>
+                    android:textSize="18dp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal">
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:id="@+id/Cfavorito"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_favorite_border">
-                    </ImageView>
+                        android:src="@drawable/ic_favorite_border"></ImageView>
+
                     <ImageView
                         android:id="@+id/Ccomentar"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_comment">
-                    </ImageView>
+                        android:src="@drawable/ic_comment"></ImageView>
+
                     <ImageView
                         android:id="@+id/Cguardar"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_save_border">
-                    </ImageView>
+                        android:src="@drawable/ic_save_border"></ImageView>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal">
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:id="@+id/txtClike"
                         android:layout_width="100dp"
-                        android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:hint="100">
-                    </TextView>
+                        android:gravity="center"
+                        android:hint="100"></TextView>
+
                     <TextView
                         android:id="@+id/txtCcomentar"
                         android:layout_width="100dp"
-                        android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:hint="20">
-                    </TextView>
+                        android:gravity="center"
+                        android:hint="20"></TextView>
+
                     <TextView
                         android:id="@+id/txtCguardar"
                         android:layout_width="100dp"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:layout_height="wrap_content"></TextView>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

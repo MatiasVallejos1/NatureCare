@@ -15,7 +15,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtProducto"
+                android:id="@+id/txtMPProducto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -24,7 +24,7 @@
                 android:textSize="26dp"
                 android:hint="Nombre del producto"/>
             <TextView
-                android:id="@+id/txtNombre"
+                android:id="@+id/txtMPNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="fill"
@@ -40,7 +40,7 @@
                 android:layout_marginBottom="10dp">
             </ImageView>
             <TextView
-                android:id="@+id/txtProducto2"
+                android:id="@+id/txtMPProducto2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="fill"
@@ -77,21 +77,21 @@
                 android:orientation="horizontal"
                 android:gravity="center_horizontal">
                 <TextView
-                    android:id="@+id/txtLike"
+                    android:id="@+id/txtMPLike"
                     android:layout_width="100dp"
                     android:gravity="center"
                     android:layout_height="wrap_content"
                     android:hint="100">
                 </TextView>
                 <TextView
-                    android:id="@+id/txtComentar"
+                    android:id="@+id/txtMPComentar"
                     android:layout_width="100dp"
                     android:gravity="center"
                     android:layout_height="wrap_content"
                     android:hint="">
                 </TextView>
                 <TextView
-                    android:id="@+id/txtGuardar"
+                    android:id="@+id/txtMPGuardar"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content">
                 </TextView>
@@ -104,7 +104,7 @@
                 android:textSize="24dp"
                 android:layout_marginTop="20dp"/>
             <TextView
-                android:id="@+id/txtDetalle"
+                android:id="@+id/txtMPDetalle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
@@ -118,7 +118,7 @@
                 android:orientation="horizontal"
                 android:gravity="left">
                 <Button
-                    android:id="@+id/menos"
+                    android:id="@+id/MPmenos"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_button"
@@ -127,13 +127,13 @@
                     android:textSize="25dp"
                     android:layout_gravity="left"/>
                 <EditText
-                    android:id="@+id/txtCantidad"
+                    android:id="@+id/txtMPCantidad"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:inputType="number"/>
                 <Button
-                    android:id="@+id/mas"
+                    android:id="@+id/MPmas"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_button"
@@ -147,7 +147,7 @@
                     android:orientation="horizontal"
                     android:gravity="right">
                     <Button
-                        android:id="@+id/comprar"
+                        android:id="@+id/MPcomprar"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_button"

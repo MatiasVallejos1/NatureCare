@@ -4,84 +4,90 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtPRNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="fill"
-            android:hint="Usuario"
-            android:textSize="24dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"/>
-        <ImageView
-            android:id="@+id/productoImage"
-            android:layout_width="250dp"
-            android:layout_height="240dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp">
-        </ImageView>
-        <TextView
-            android:id="@+id/txtPRProducto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="fill"
-            android:hint="Producto 1"
-            android:textSize="18dp"
-            android:layout_marginBottom="20dp"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-            <ImageView
-                android:id="@+id/PRfavorito"
-                android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtPRNombre"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_favorite_border">
-            </ImageView>
+                android:gravity="fill"
+                android:hint="Usuario"
+                android:textSize="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"/>
             <ImageView
-                android:id="@+id/PRcomentar"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_share">
+                android:id="@+id/productoImage"
+                android:layout_width="250dp"
+                android:layout_height="240dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp">
             </ImageView>
-            <ImageView
-                android:id="@+id/PRguardar"
-                android:layout_width="100dp"
+            <TextView
+                android:id="@+id/txtPRProducto"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_save_border">
-            </ImageView>
+                android:gravity="fill"
+                android:hint="Producto 1"
+                android:textSize="18dp"
+                android:layout_marginBottom="20dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+                <ImageView
+                    android:id="@+id/PRfavorito"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_favorite_border">
+                </ImageView>
+                <ImageView
+                    android:id="@+id/PRcomentar"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_share">
+                </ImageView>
+                <ImageView
+                    android:id="@+id/PRguardar"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_save_border">
+                </ImageView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/txtPRLike"
+                    android:layout_width="100dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:hint="100">
+                </TextView>
+                <TextView
+                    android:id="@+id/txtPRComentar"
+                    android:layout_width="100dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:hint="">
+                </TextView>
+                <TextView
+                    android:id="@+id/txtPRGuardar"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content">
+                </TextView>
+            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-            <TextView
-                android:id="@+id/txtPRLike"
-                android:layout_width="100dp"
-                android:gravity="center"
-                android:layout_height="wrap_content"
-                android:hint="100">
-            </TextView>
-            <TextView
-                android:id="@+id/txtPRComentar"
-                android:layout_width="100dp"
-                android:gravity="center"
-                android:layout_height="wrap_content"
-                android:hint="">
-            </TextView>
-            <TextView
-                android:id="@+id/txtPRGuardar"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content">
-            </TextView>
-        </LinearLayout>
-    </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

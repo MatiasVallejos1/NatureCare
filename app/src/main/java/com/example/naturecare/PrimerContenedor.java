@@ -73,28 +73,18 @@ public class PrimerContenedor extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated( View view, @Nullable Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-
-        requestQueue = Volley.newRequestQueue(requireContext());
-
-        txtNombre = (TextView) view.findViewById(R.id.txtPUNombre);
-        txtPublicacion = (TextView) view.findViewById(R.id.txtPublicacion);
-        txtLike = (TextView) view.findViewById(R.id.txtPULike);
-        txtComentar = (TextView) view.findViewById(R.id.txtPUComentar);
-
-        lista = new ArrayList<>();
 
         listaPublicacion = (RecyclerView) view.findViewById(R.id.listPublicacion);
         listaPublicacion.setHasFixedSize(true);
         listaPublicacion.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
+        lista = new ArrayList<>();
+
         listarPublicaciones();
-        /*
-        datosPublicaciones = new DatosPublicaciones(requireContext(),publicacionArrayList);
-        listView.setAdapter(datosPublicaciones);
-        listarPublicaciones();*/
+
     }
 
     public void listarPublicaciones() {

@@ -28,11 +28,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/ListaProducto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/lista_producto">
+                android:layout_height="match_parent"/>
 
-            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
 
     </ScrollView>

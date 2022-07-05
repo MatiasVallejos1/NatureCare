@@ -2,100 +2,77 @@ package com.example.naturecare;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.contentcapture.ContentCaptureCondition;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.naturecare.entidades.Publicacion;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class DatosPublicaciones extends RecyclerView.Adapter<DatosPublicaciones.ViewHolder> {
+public class DatosPublicaciones extends RecyclerView.Adapter<DatosPublicaciones.PubliViewHolder>{
 
-    private List<Publicacion> localDataSet;
-    private Publicacion publicacion;
-    Context context;
+    private List<Publicacion> publiList;
+    private Context context;
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView txtNombre;
-        private final TextView txtPublicacion;
-        private final TextView txtLike;
-        private final TextView txtcomentario;
 
-        public ViewHolder(View view) {
-            super(view);
-            // Define click listener for the ViewHolder's View
-
-            txtNombre = (TextView) view.findViewById(R.id.txtPUNombre);
-            txtPublicacion = (TextView) view.findViewById(R.id.txtPUPublicacion);
-            txtLike = (TextView) view.findViewById(R.id.txtPULike);
-            txtcomentario = (TextView) view.findViewById(R.id.txtPUComentar);
-
-        }
-
-        public TextView getTxtNombre() {
-            return txtNombre;
-        }
-        public TextView getTxtPublicacion() {
-            return txtPublicacion;
-        }
-        public TextView getTxtLike() {
-            return txtLike;
-        }
-        public TextView getTxtcomentario() {
-            return txtcomentario;
-        }
-    }
-
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used
-     * by RecyclerView.
-     */
-    public DatosPublicaciones(Context contexto, List<Publicacion> dataSet) {
+    public DatosPublicaciones(Context contexto, List<Publicacion> lista) {
         context = contexto;
-        localDataSet = dataSet;
+        publiList = lista;
     }
 
-    // Create new views (invoked by the layout manager)
+
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        // Create a new view, which defines the UI of the list item
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.lista_publicacion, viewGroup, false);
+    public PubliViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.lista_publicacion,null);
 
-        return new ViewHolder(view);
+        return new PubliViewHolder(view);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull PubliViewHolder holder, int position) {
+        Publicacion publicacion = publiList.get(position);
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        viewHolder.getTxtNombre().setText((CharSequence) localDataSet.set(position, publicacion));
-        viewHolder.getTxtPublicacion().setText((CharSequence) localDataSet.set(position, publicacion));
-        viewHolder.getTxtLike().setText((CharSequence) localDataSet.set(position, publicacion));
-        viewHolder.getTxtcomentario().setText((CharSequence) localDataSet.set(position, publicacion));
+        holder.txtNombre.setText(publicacion.getNombre());
+        holder.txtDetalle.setText(publicacion.getDetalle());
+        holder.txtLike.setText(String.valueOf(publicacion.getLike()));
+        holder.txtComentario.setText(String.valueOf(publicacion.getComentarios()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(),getClass());
+                intent.putExtra("id", String.valueOf(publicacion));
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return localDataSet.size();
+        return publiList.size();
+    }
+
+
+
+    class PubliViewHolder extends RecyclerView.ViewHolder{
+
+        TextView txtNombre, txtDetalle, txtLike, txtComentario;
+        public PubliViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            txtNombre = itemView.findViewById(R.id.txtPUNombre);
+            txtDetalle = itemView.findViewById(R.id.txtPUPublicacion);
+            txtLike = itemView.findViewById(R.id.txtPULike);
+            txtComentario = itemView.findViewById(R.id.txtPUComentar);
+        }
     }
 }

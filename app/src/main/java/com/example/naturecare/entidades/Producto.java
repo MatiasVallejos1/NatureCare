@@ -1,19 +1,37 @@
 package com.example.naturecare.entidades;
 
 public class Producto {
-    private String nombre, detalle, ficha_tecnica, estado_producto;
-    private int cantidad;
+    private String nombre, detalle, ficha_tecnica, estado_producto, usuario;
+    private int cantidad, id;
     private double monto;
 
-    public Producto(String nombre, String detalle, String ficha_tecnica, String estado_producto, int cantidad, double monto) {
+    public Producto(int id, String nombre, int cantidad, String detalle, String ficha_tecnica, String estado_producto, double monto, String usuario) {
+        this.id = id;
         this.nombre = nombre;
+        this.cantidad = cantidad;
         this.detalle = detalle;
         this.ficha_tecnica = ficha_tecnica;
         this.estado_producto = estado_producto;
-        this.cantidad = cantidad;
         this.monto = monto;
+        this.usuario = usuario;
     }
     public Producto() {
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
