@@ -1,5 +1,7 @@
 package com.example.naturecare;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -33,6 +36,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +52,7 @@ public class PrimerContenedor extends Fragment {
     RequestQueue requestQueue;
     List<Publicacion> lista;
     Publicacion publicacion;
-    private static final String URL = "http://192.168.1.6/naturecare/readPublicacion.php";
+    private static final String URL = "https://naturecare-app.000webhostapp.com/crud/readPublicacion.php";
 
     public PrimerContenedor() {
         // Required empty public constructor
@@ -111,7 +115,12 @@ public class PrimerContenedor extends Fragment {
 
                             }
 
-                            DatosPublicaciones datos = new DatosPublicaciones(getActivity(),lista);
+                            DatosPublicaciones datos = new DatosPublicaciones(getContext(), lista, new DatosPublicaciones.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(DatosPublicaciones item) {
+                                    moverDatos(item);
+                                }
+                            });
                             listaPublicacion.setAdapter(datos);
 
                         } catch (JSONException e) {
@@ -130,5 +139,11 @@ public class PrimerContenedor extends Fragment {
     }, error -> Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_SHORT).show());
         Volley.newRequestQueue(requireContext()).add(request);
         //requestQueue.add(request);*/
+    }
+
+    public void moverDatos(DatosPublicaciones item){
+        Intent intent = new Intent(getContext(),PublicacionSeleccion.class);
+        intent.putExtra("DatosPublicaciones", (Serializable) item);
+        startActivity(intent);
     }
 }

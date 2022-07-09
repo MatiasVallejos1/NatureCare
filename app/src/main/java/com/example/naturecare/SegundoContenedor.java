@@ -39,7 +39,7 @@ public class SegundoContenedor extends Fragment{
     RequestQueue requestQueue;
     List<Producto> lista;
     Producto producto;
-    private static final String URL = "http://192.168.1.6/naturecare/readProducto.php";
+    private static final String URL = "https://naturecare-app.000webhostapp.com/crud/readProducto.php";
 
     public SegundoContenedor() {
         // Required empty public constructor

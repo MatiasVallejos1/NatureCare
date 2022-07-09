@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class Publicacion {
+public class Publicacion implements Serializable{
     int idPublicacion,like,comentarios;
     String nombre,detalle;
     String hora;

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,12 +20,20 @@ import java.util.List;
 public class DatosPublicaciones extends RecyclerView.Adapter<DatosPublicaciones.PubliViewHolder>{
 
     private List<Publicacion> publiList;
+    private LayoutInflater inflater;
     private Context context;
+    final DatosPublicaciones.OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(DatosPublicaciones item);
+    }
 
 
-    public DatosPublicaciones(Context contexto, List<Publicacion> lista) {
-        context = contexto;
+    public DatosPublicaciones(Context context, List<Publicacion> lista, DatosPublicaciones.OnItemClickListener listener) {
+        inflater = LayoutInflater.from(context);
+        this.context = context;
         publiList = lista;
+        this.listener = listener;
     }
 
 
@@ -48,9 +57,7 @@ public class DatosPublicaciones extends RecyclerView.Adapter<DatosPublicaciones.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(),getClass());
-                intent.putExtra("id", String.valueOf(publicacion));
-                holder.itemView.getContext().startActivity(intent);
+                listener.onItemClick(DatosPublicaciones.this);
             }
         });
 
@@ -73,6 +80,7 @@ public class DatosPublicaciones extends RecyclerView.Adapter<DatosPublicaciones.
             txtDetalle = itemView.findViewById(R.id.txtPUPublicacion);
             txtLike = itemView.findViewById(R.id.txtPULike);
             txtComentario = itemView.findViewById(R.id.txtPUComentar);
+
         }
     }
 }
