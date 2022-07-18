@@ -2,14 +2,43 @@ package com.example.naturecare.entidades;
 
 public class UsuarioN {
 
+    int id, tipo;
     private String nombre;
     private String email;
+    private String phone;
     private String pass;
 
-    public UsuarioN(String nombre, String email, String pass) {
+    public UsuarioN(int id, String nombre, String email, String phone, String pass, int tipo) {
+        this.id = id;
         this.nombre = nombre;
         this.email = email;
+        this.phone = phone;
         this.pass = pass;
+        this.tipo = tipo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getNombre() {

@@ -25,12 +25,11 @@ public class DatosPublicaciones extends RecyclerView.Adapter<DatosPublicaciones.
     final DatosPublicaciones.OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(DatosPublicaciones item);
+        void onItemClick(int position);
     }
 
-
     public DatosPublicaciones(Context context, List<Publicacion> lista, DatosPublicaciones.OnItemClickListener listener) {
-        inflater = LayoutInflater.from(context);
+        //inflater = LayoutInflater.from(context);
         this.context = context;
         publiList = lista;
         this.listener = listener;
@@ -42,7 +41,7 @@ public class DatosPublicaciones extends RecyclerView.Adapter<DatosPublicaciones.
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.lista_publicacion,null);
 
-        return new PubliViewHolder(view);
+        return new PubliViewHolder(view,listener);
     }
 
     @Override
@@ -53,13 +52,6 @@ public class DatosPublicaciones extends RecyclerView.Adapter<DatosPublicaciones.
         holder.txtDetalle.setText(publicacion.getDetalle());
         holder.txtLike.setText(String.valueOf(publicacion.getLike()));
         holder.txtComentario.setText(String.valueOf(publicacion.getComentarios()));
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onItemClick(DatosPublicaciones.this);
-            }
-        });
 
     }
 
@@ -73,7 +65,7 @@ public class DatosPublicaciones extends RecyclerView.Adapter<DatosPublicaciones.
     class PubliViewHolder extends RecyclerView.ViewHolder{
 
         TextView txtNombre, txtDetalle, txtLike, txtComentario;
-        public PubliViewHolder(@NonNull View itemView) {
+        public PubliViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener) {
             super(itemView);
 
             txtNombre = itemView.findViewById(R.id.txtPUNombre);
@@ -81,6 +73,16 @@ public class DatosPublicaciones extends RecyclerView.Adapter<DatosPublicaciones.
             txtLike = itemView.findViewById(R.id.txtPULike);
             txtComentario = itemView.findViewById(R.id.txtPUComentar);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos=getAdapterPosition();
+
+                    if (pos != RecyclerView.NO_POSITION){
+                        onItemClickListener.onItemClick(pos);
+                    }
+                }
+            });
         }
     }
 }

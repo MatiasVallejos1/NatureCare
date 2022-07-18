@@ -1,5 +1,6 @@
 package com.example.naturecare;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
@@ -12,23 +13,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.naturecare.entidades.Usuario;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity2 extends AppCompatActivity {
 
     EditText etUsuario, etPass;
     Button button;
     TextView registrar;
+
+
+    private static final String URL = "https://naturecare-app.000webhostapp.com/crud/login.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +63,48 @@ public class MainActivity2 extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                login();
+
                 Intent button = new Intent(getApplicationContext(), Foro.class);
                 button.putExtra("Nombre", etUsuario.getText().toString().trim());
                 button.putExtra("Pass", etPass.getText().toString().trim());
                 startActivity(button);
             }
         });
+    }
+    private void login(){
+        if(etUsuario.getText().toString().equals("")){
+            Toast.makeText(this,"Ingrese usuario",Toast.LENGTH_SHORT).show();
+        }else if(etPass.getText().toString().equals("")){
+            Toast.makeText(this,"Ingrese su contraseña",Toast.LENGTH_SHORT).show();
+        }else{
+            StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    if(!response.isEmpty()){
+                        Intent intent = new Intent(getApplicationContext(),Foro.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(MainActivity2.this,"Usuario o contrasena incorrecta",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(MainActivity2.this,error.toString(),Toast.LENGTH_SHORT).show();
+                }
+            }){
+                @Nullable
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> parametros=new HashMap<>();
+                    parametros.put("Nombre",etUsuario.getText().toString());
+                    parametros.put("Pass",etPass.getText().toString());
+                    return super.getParams();
+                }
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(MainActivity2.this);
+            requestQueue.add(request);
+        }
     }
 }

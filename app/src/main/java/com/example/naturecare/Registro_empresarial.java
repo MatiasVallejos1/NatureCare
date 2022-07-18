@@ -7,10 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,7 +16,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +32,7 @@ public class Registro_empresarial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_empresarial);
 
-        requestQueue = Volley.newRequestQueue(this);
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
         inicializar();
 
         button.setOnClickListener(this::onClick);
@@ -55,17 +52,14 @@ public class Registro_empresarial extends AppCompatActivity {
     public void onClick(View v){
         int id = v.getId();
 
-        if(id == R.id.REregistrar){
-
-            String nombre = etUser.getText().toString().trim();
-            String phone = etPhone.getText().toString().trim();
+        if(id == R.id.registrar){
             String email = etEmail.getText().toString().trim();
+            String phone = etPhone.getText().toString().trim();
+            String usuario = etUser.getText().toString().trim();
             String password = etPass.getText().toString().trim();
             int tipo = 2;
 
-            CreateUser(nombre, phone, email, password, tipo);
-
-
+            CreateUser(usuario, phone, email, password, tipo);
         }
     }
 
@@ -93,9 +87,9 @@ public class Registro_empresarial extends AppCompatActivity {
                     }
                 }
         ){
-            @Nullable
+
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("Nombre", nombre);
                 params.put("Phone", phone);

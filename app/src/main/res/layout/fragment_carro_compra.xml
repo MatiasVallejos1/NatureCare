@@ -25,11 +25,10 @@
                 android:text="Productos Guardados"
                 android:layout_marginBottom="50dp"
                 android:textColor="@color/teal_700"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/listar_producto_carro">
+                android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>

@@ -20,6 +20,14 @@
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/icon"
                 android:layout_marginBottom="50dp"/>
+            <TextView
+                android:id="@+id/registrarse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/verde"
+                android:textSize="16dp"
+                android:layout_marginBottom="30dp"
+                android:text="Registrarse"/>
             <EditText
                 android:id="@+id/usuario"
                 android:layout_width="match_parent"
@@ -46,16 +54,10 @@
                 android:backgroundTint="@color/white"
                 android:padding="15dp"
                 android:layout_margin="10dp"/>
-            <TextView
-                android:id="@+id/registrarse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/verde"
-                android:text="Registrarse"/>
             <Button
                 android:id="@+id/iniciarSesion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:text="Iniciar sesion"
                 android:background="@drawable/border_button"
                 android:textColor="@color/white"

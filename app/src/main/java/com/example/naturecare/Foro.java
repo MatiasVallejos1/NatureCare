@@ -66,12 +66,6 @@ public class Foro extends AppCompatActivity {
 
 
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            name = extras.getString("Nombre");
-            pass = extras.getString("Pass");
-        }
-
         loadFragment(primerContenedor);
 
         if(menuOpcion == 1){
@@ -93,7 +87,7 @@ public class Foro extends AppCompatActivity {
 
     public void setToolbarTienda(int menu){
         Toolbar toolbarTienda;
-        toolbarTienda = findViewById(R.id.tool_bar_tienda);
+        toolbarTienda = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbarTienda);
         getSupportActionBar().show();
     }

@@ -1,33 +1,22 @@
 package com.example.naturecare;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.naturecare.entidades.Publicacion;
@@ -37,11 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.zip.Inflater;
 
 
 public class PrimerContenedor extends Fragment {
@@ -117,7 +103,7 @@ public class PrimerContenedor extends Fragment {
 
                             DatosPublicaciones datos = new DatosPublicaciones(getContext(), lista, new DatosPublicaciones.OnItemClickListener() {
                                 @Override
-                                public void onItemClick(DatosPublicaciones item) {
+                                public void onItemClick(int item) {
                                     moverDatos(item);
                                 }
                             });
@@ -141,9 +127,9 @@ public class PrimerContenedor extends Fragment {
         //requestQueue.add(request);*/
     }
 
-    public void moverDatos(DatosPublicaciones item){
-        Intent intent = new Intent(getContext(),PublicacionSeleccion.class);
-        intent.putExtra("DatosPublicaciones", (Serializable) item);
-        startActivity(intent);
+    public void moverDatos(int item){
+        Intent intent = new Intent(getActivity(),PublicacionSeleccion.class);
+        intent.putExtra("Publicacion", item);
+        startActivity(intent, null);
     }
 }
