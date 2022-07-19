@@ -1,6 +1,7 @@
 package com.example.naturecare;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,7 @@ public class ProductoSeleccion extends Activity {
     Button menos, mas, comprar;
 
     String producto, user, detalle;
-    int count;
+    int count, id, cantidad;
     double monto;
 
     @Override
@@ -25,11 +26,15 @@ public class ProductoSeleccion extends Activity {
         inicializar();
         Bundle datos = getIntent().getExtras();
 
+
+        id = datos.getInt("id");
         producto = datos.getString("nombre");
         user = datos.getString("user");
         detalle = datos.getString("detalle");
         count = datos.getInt("cantidad");
         monto = datos.getDouble("monto");
+
+
 
         txtProducto.setText(producto);
         txtProducto2.setText(producto);
@@ -37,24 +42,20 @@ public class ProductoSeleccion extends Activity {
         txtDetalle.setText(detalle);
         txtMonto.setText(String.valueOf(monto));
 
-    }
+        comprar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cantidad = Integer.parseInt(txtCantidad.getText().toString());
+                Intent intent = new Intent(ProductoSeleccion.this,CarroCompra.class);
+                intent.putExtra("id",id);
+                intent.putExtra("cantidad",cantidad);
+                intent.putExtra("nombre",producto);
+                intent.putExtra("user",user);
+                intent.putExtra("precio",monto);
+                startActivity(intent);
+            }
+        });
 
-    public void inicializar(){
-        txtProducto = findViewById(R.id.txtMPProducto);
-        txtProducto2 = findViewById(R.id.txtMPProducto2);
-        txtUser = findViewById(R.id.txtMPNombre);
-        txtCantidad = findViewById(R.id.txtMPCantidad);
-        txtDetalle = findViewById(R.id.txtMPDetalle);
-        txtMonto = findViewById(R.id.txtMPMonto);
-
-        menos = findViewById(R.id.MPmenos);
-        mas = findViewById(R.id.MPmas);
-        comprar = findViewById(R.id.MPcomprar);
-
-        txtCantidad.setText(0);
-    }
-
-    public void cantidad(){
         menos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,5 +83,21 @@ public class ProductoSeleccion extends Activity {
                 txtCantidad.setText(String.valueOf(num));
             }
         });
+
+    }
+
+    public void inicializar(){
+        txtProducto = findViewById(R.id.txtMPProducto);
+        txtProducto2 = findViewById(R.id.txtMPProducto2);
+        txtUser = findViewById(R.id.txtMPNombre);
+        txtCantidad = findViewById(R.id.txtMPCantidad);
+        txtDetalle = findViewById(R.id.txtMPDetalle);
+        txtMonto = findViewById(R.id.txtMPMonto);
+
+        menos = findViewById(R.id.MPmenos);
+        mas = findViewById(R.id.MPmas);
+        comprar = findViewById(R.id.MPcomprar);
+
+        txtCantidad.setText("1");
     }
 }

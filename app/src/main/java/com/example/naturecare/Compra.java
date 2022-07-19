@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -23,10 +24,11 @@ import java.util.Map;
 public class Compra extends Activity {
 
     EditText etRut, etEmail, etRegion, etCiudad, etDireccion;
+    TextView txtCantidad, txtIva, txtMonto;
     Button registrar;
     String user, producto, rut, email, region, ciudad, direccion;
     int cantidad, idProducto, idUser;
-    double iva, monto;
+    double iva, monto, precio, montoIva;
 
     RequestQueue requestQueue;
 
@@ -37,6 +39,22 @@ public class Compra extends Activity {
         setContentView(R.layout.compra);
 
         inicializar();
+        Bundle datos = getIntent().getExtras();
+
+        idProducto=datos.getInt("id");
+        cantidad=datos.getInt("cantidad");
+        producto=datos.getString("nombre");
+        user=datos.getString("user");
+        precio=datos.getDouble("precio");
+
+        precio = precio*cantidad;
+        montoIva = precio * 1.19;
+        iva = montoIva-precio;
+
+
+        txtCantidad.setText(String.valueOf(cantidad));
+        txtIva.setText(String.valueOf(iva));
+        txtMonto.setText(String.valueOf(precio));
 
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +79,10 @@ public class Compra extends Activity {
         etRegion = findViewById(R.id.CRegion);
         etCiudad = findViewById(R.id.CCiudad);
         etDireccion = findViewById(R.id.CDireccion);
+
+        txtCantidad = findViewById(R.id.CCantidad);
+        txtIva = findViewById(R.id.CIva);
+        txtMonto = findViewById(R.id.CMonto);
 
         registrar = findViewById(R.id.CRegistrar);
     }
@@ -102,11 +124,17 @@ public class Compra extends Activity {
                 protected Map<String, String> getParams() throws AuthFailureError {
 
                     Map<String, String>params=new HashMap<>();
+                    params.put("Cantidad_producto",String.valueOf(cantidad));
                     params.put("Rut_cliente",txtrut);
                     params.put("Email",txtemail);
                     params.put("Region",txtregion);
                     params.put("Ciudad",txtciudad);
                     params.put("Direccion",txtdireccion);
+                    params.put("Monto",String.valueOf(montoIva));
+                    params.put("Iva",String.valueOf(iva));
+                    params.put("Producto_idProducto",String.valueOf(idProducto));
+                    params.put("Usuario_Personal_idUsuarioPersonal","1");
+                    params.put("Valor_final",String.valueOf(precio));
                     return params;
                 }
             };

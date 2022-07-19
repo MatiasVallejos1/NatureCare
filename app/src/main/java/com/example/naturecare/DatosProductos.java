@@ -42,7 +42,7 @@ public class DatosProductos extends RecyclerView.Adapter<DatosProductos.ProdView
         Producto producto = prodList.get(position);
 
         holder.txtUser.setText(producto.getUsuario());
-        holder.txtNombre.setText(producto.getDetalle());
+        holder.txtNombre.setText(producto.getNombre());
     }
 
     @Override

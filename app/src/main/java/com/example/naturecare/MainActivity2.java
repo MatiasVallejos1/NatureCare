@@ -34,6 +34,7 @@ import java.util.Map;
 public class MainActivity2 extends AppCompatActivity {
 
     EditText etUsuario, etPass;
+    String user, pass;
     Button button;
     TextView registrar;
 
@@ -65,9 +66,9 @@ public class MainActivity2 extends AppCompatActivity {
             public void onClick(View v) {
                 login();
 
-                Intent button = new Intent(getApplicationContext(), Foro.class);
-                button.putExtra("Nombre", etUsuario.getText().toString().trim());
-                button.putExtra("Pass", etPass.getText().toString().trim());
+                Intent button = new Intent(MainActivity2.this, Foro.class);
+                button.putExtra("nombre", user);
+                button.putExtra("pass", pass);
                 startActivity(button);
             }
         });
@@ -78,29 +79,33 @@ public class MainActivity2 extends AppCompatActivity {
         }else if(etPass.getText().toString().equals("")){
             Toast.makeText(this,"Ingrese su contraseña",Toast.LENGTH_SHORT).show();
         }else{
+            user=etUsuario.toString().trim();
+            pass=etPass.toString().trim();
             StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    if(!response.isEmpty()){
+                    if(response.equalsIgnoreCase("Igreso correctamente")){
+                        etUsuario.setText("");
+                        etPass.setText("");
                         Intent intent = new Intent(getApplicationContext(),Foro.class);
                         startActivity(intent);
                     }else{
-                        Toast.makeText(MainActivity2.this,"Usuario o contrasena incorrecta",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity2.this,response,Toast.LENGTH_SHORT).show();
                     }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(MainActivity2.this,error.toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity2.this,error.getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }){
                 @Nullable
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String,String> parametros=new HashMap<>();
-                    parametros.put("Nombre",etUsuario.getText().toString());
-                    parametros.put("Pass",etPass.getText().toString());
-                    return super.getParams();
+                    parametros.put("Nombre",user);
+                    parametros.put("Pass",pass);
+                    return parametros;
                 }
             };
             RequestQueue requestQueue = Volley.newRequestQueue(MainActivity2.this);

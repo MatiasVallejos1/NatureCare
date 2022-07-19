@@ -36,7 +36,7 @@ import java.util.List;
 public class SegundoContenedor extends Fragment implements DatosProductos.OnItemClickListener{
 
     String nombre, detalle, ficha, estado, user;
-    int cantidad;
+    int cantidad, id;
     double monto;
 
     RecyclerView listaProducto;
@@ -124,6 +124,7 @@ public class SegundoContenedor extends Fragment implements DatosProductos.OnItem
     @Override
     public void onItemClick(View v, int position) {
         producto=lista.get(position);
+        id=producto.getId();
         nombre=producto.getNombre();
         cantidad=producto.getCantidad();
         detalle=producto.getDetalle();
@@ -136,6 +137,7 @@ public class SegundoContenedor extends Fragment implements DatosProductos.OnItem
 
     public void moverDatos(){
         Intent intent = new Intent(requireContext(),ProductoSeleccion.class);
+        intent.putExtra("id",id);
         intent.putExtra("nombre",nombre);
         intent.putExtra("cantidad",cantidad);
         intent.putExtra("detalle",detalle);
