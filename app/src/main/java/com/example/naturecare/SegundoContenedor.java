@@ -33,10 +33,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SegundoContenedor extends Fragment{
+public class SegundoContenedor extends Fragment implements DatosProductos.OnItemClickListener{
+
+    String nombre, detalle, ficha, estado, user;
+    int cantidad;
+    double monto;
 
     RecyclerView listaProducto;
     RequestQueue requestQueue;
+    DatosProductos datos;
     List<Producto> lista;
     Producto producto;
     private static final String URL = "https://naturecare-app.000webhostapp.com/crud/readProducto.php";
@@ -96,10 +101,10 @@ public class SegundoContenedor extends Fragment{
                                         ProductoOb.getString("user")
                                 ));
 
-
                             }
 
-                            DatosProductos datos = new DatosProductos(getActivity(),lista);
+                            datos = new DatosProductos(getActivity(),lista);
+                            datos.setOnItemClickListener(SegundoContenedor.this);
                             listaProducto.setAdapter(datos);
 
                         } catch (JSONException e) {
@@ -114,5 +119,30 @@ public class SegundoContenedor extends Fragment{
                     }
                 });
         Volley.newRequestQueue(getActivity()).add(request);
+    }
+
+    @Override
+    public void onItemClick(View v, int position) {
+        producto=lista.get(position);
+        nombre=producto.getNombre();
+        cantidad=producto.getCantidad();
+        detalle=producto.getDetalle();
+        ficha=producto.getFicha_tecnica();
+        estado=producto.getEstado_producto();
+        monto=producto.getMonto();
+        user=producto.getUsuario();
+        moverDatos();
+    }
+
+    public void moverDatos(){
+        Intent intent = new Intent(requireContext(),ProductoSeleccion.class);
+        intent.putExtra("nombre",nombre);
+        intent.putExtra("cantidad",cantidad);
+        intent.putExtra("detalle",detalle);
+        intent.putExtra("ficha",ficha);
+        intent.putExtra("estado",estado);
+        intent.putExtra("monto",monto);
+        intent.putExtra("user",user);
+        startActivity(intent);
     }
 }

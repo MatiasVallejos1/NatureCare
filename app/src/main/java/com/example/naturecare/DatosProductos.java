@@ -17,6 +17,11 @@ public class DatosProductos extends RecyclerView.Adapter<DatosProductos.ProdView
 
     private List<Producto> prodList;
     private Context context;
+    private static OnItemClickListener listener;
+
+    public interface OnItemClickListener{
+        void onItemClick(View v,int position);
+    }
 
     public DatosProductos(Context contexto, List<Producto> lista) {
         context = contexto;
@@ -45,6 +50,10 @@ public class DatosProductos extends RecyclerView.Adapter<DatosProductos.ProdView
         return prodList.size();
     }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClick){
+        this.listener = onItemClick;
+    }
+
     class ProdViewHolder extends RecyclerView.ViewHolder{
 
         TextView txtUser, txtNombre;
@@ -53,6 +62,13 @@ public class DatosProductos extends RecyclerView.Adapter<DatosProductos.ProdView
 
             txtUser = itemView.findViewById(R.id.txtPRNombre);
             txtNombre = itemView.findViewById(R.id.txtPRProducto);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(v,getAdapterPosition());
+                }
+            });
         }
     }
 

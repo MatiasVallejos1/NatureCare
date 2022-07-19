@@ -16,16 +16,22 @@ public class PublicacionSeleccion extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.publicacion_seleccion);
 
-        Publicacion datos = (Publicacion) getIntent().getSerializableExtra("Publicacion");
         txtNombre = findViewById(R.id.txtPSENombre);
         txtPublicacion = findViewById(R.id.txtPSEPublicacion);
         txtLike = findViewById(R.id.txtPSELike);
         txtComentar = findViewById(R.id.txtPSEComentar);
 
-        txtNombre.setText(datos.getNombre());
-        txtPublicacion.setText(datos.getDetalle());
-        txtLike.setText(datos.getLike());
-        txtComentar.setText(datos.getComentarios());
+        Bundle datos = getIntent().getExtras();
+
+        String nombre = datos.getString("nombre");
+        String detalle = datos.getString("detalle");
+        String like = datos.getString("like");
+        String comentario = datos.getString("comentario");
+
+        txtNombre.setText(nombre);
+        txtPublicacion.setText(detalle);
+        txtLike.setText(like);
+        txtComentar.setText(comentario);
 
 
 

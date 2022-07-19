@@ -30,6 +30,18 @@
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
+            android:name=".Compra"
+            android:exported="false" />
+        <activity
+            android:name=".CarroCompra"
+            android:exported="false" />
+        <activity
+            android:name=".PublicacionSeleccion"
+            android:exported="false" />
+        <activity
+            android:name=".ProductoSeleccion"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -68,6 +68,8 @@
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/activity_registro_publicacion.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/activity_registro_usuario.xml" value="0.25" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/activity_tienda.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/carro_compra.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/compra.xml" value="0.25" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/fragment_agregar_carro.xml" value="0.1" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/fragment_carro_compra.xml" value="0.25" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/fragment_primer_contenedor.xml" value="0.14444444444444443" />
@@ -80,9 +82,11 @@
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/fragment_segundo_contenedor.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/lista_producto.xml" value="0.28651685393258425" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/lista_publicacion.xml" value="0.18055555555555555" />
-        <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/listar_producto_carro.xml" value="0.1" />
+        <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/listar_producto_carro.xml" value="0.25" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/mostrar_producto.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/mostrar_publicacion.xml" value="0.20786516853932585" />
+        <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/producto_seleccion.xml" value="0.25" />
+        <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/publicacion_guardada.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/publicacion_seleccion.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/toolbar.xml" value="0.1" />
         <entry key="..\:/Users/matia/AndroidStudioProjects/Trabajo/app/src/main/res/layout/toolbar_tienda.xml" value="0.36666666666666664" />

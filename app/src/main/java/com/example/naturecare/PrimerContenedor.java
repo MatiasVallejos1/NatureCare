@@ -1,5 +1,6 @@
 package com.example.naturecare;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -30,13 +32,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PrimerContenedor extends Fragment {
+public class PrimerContenedor extends Fragment implements DatosPublicaciones.OnItemClickListener{
 
-    TextView txtNombre, txtPublicacion, txtLike, txtComentar;
+    String txtNombre, txtDetalle;
+    int like, comentario;
 
     RecyclerView listaPublicacion;
     RequestQueue requestQueue;
     List<Publicacion> lista;
+    DatosPublicaciones datos;
     Publicacion publicacion;
     private static final String URL = "https://naturecare-app.000webhostapp.com/crud/readPublicacion.php";
 
@@ -97,16 +101,15 @@ public class PrimerContenedor extends Fragment {
                                         publicacionOb.getInt("like"),
                                         publicacionOb.getInt("comentario")
                                 ));
-
-
+                                /*
+                                txtNombre=publicacionOb.getString("nombre");
+                                txtDetalle=publicacionOb.getString("detalle");
+                                like=publicacionOb.getInt("like");
+                                comentario=publicacionOb.getInt("comentario");*/
                             }
 
-                            DatosPublicaciones datos = new DatosPublicaciones(getContext(), lista, new DatosPublicaciones.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(int item) {
-                                    moverDatos(item);
-                                }
-                            });
+                            datos = new DatosPublicaciones(getContext(),lista);
+                            datos.setOnItemClickListener(PrimerContenedor.this);
                             listaPublicacion.setAdapter(datos);
 
                         } catch (JSONException e) {
@@ -127,9 +130,23 @@ public class PrimerContenedor extends Fragment {
         //requestQueue.add(request);*/
     }
 
-    public void moverDatos(int item){
-        Intent intent = new Intent(getActivity(),PublicacionSeleccion.class);
-        intent.putExtra("Publicacion", item);
-        startActivity(intent, null);
+    @Override
+    public void onItemClick(View v, int position) {
+        Toast.makeText(getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+        publicacion=lista.get(position);
+        txtNombre=publicacion.getNombre();
+        txtDetalle=publicacion.getDetalle();
+        like=publicacion.getLike();
+        comentario=publicacion.getComentarios();
+        moverDatos();
+    }
+
+    public void moverDatos(){
+        Intent intent = new Intent(requireContext(),PublicacionSeleccion.class);
+        intent.putExtra("nombre",txtNombre);
+        intent.putExtra("detalle",txtDetalle);
+        intent.putExtra("like",like);
+        intent.putExtra("comentario",comentario);
+        startActivity(intent);
     }
 }

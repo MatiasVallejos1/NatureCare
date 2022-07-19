@@ -1,6 +1,8 @@
 package com.example.naturecare.entidades;
 
-public class Producto {
+import java.io.Serializable;
+
+public class Producto implements Serializable {
     private String nombre, detalle, ficha_tecnica, estado_producto, usuario;
     private int cantidad, id;
     private double monto;
